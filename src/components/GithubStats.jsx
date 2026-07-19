@@ -1,0 +1,79 @@
+import React, { useState, useEffect } from 'react';
+
+export default React.memo(function GithubStats() {
+  // Initial state acts as the fallback for API rate limits (e.g., 403)
+  const [stats, setStats] = useState({ repos: 15, stars: 15, forks: 1 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const userRes = await fetch('https://api.github.com/users/Aizaz-Noor');
+        if (!userRes.ok) throw new Error('Failed to fetch user');
+        const userData = await userRes.json();
+
+        // Fetch repos to calculate stars and forks
+        // Using per_page=100 to get as many as possible in one request
+        const reposRes = await fetch('https://api.github.com/users/Aizaz-Noor/repos?per_page=100');
+        if (!reposRes.ok) throw new Error('Failed to fetch repos');
+        const reposData = await reposRes.json();
+
+        let totalStars = 0;
+        let totalForks = 0;
+
+        for (const repo of reposData) {
+          totalStars += repo.stargazers_count || 0;
+          totalForks += repo.forks_count || 0;
+        }
+
+        setStats({
+          repos: userData.public_repos || 0,
+          stars: totalStars,
+          forks: totalForks,
+        });
+      } catch (error) {
+        console.error("Error fetching GitHub stats:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchStats();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', opacity: 0.5, justifyContent: 'center' }}>
+        <div>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-1)', fontFamily: 'monospace' }}>...</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Repositories</div>
+        </div>
+        <div>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-1)', fontFamily: 'monospace' }}>...</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total Stars</div>
+        </div>
+        <div>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-1)', fontFamily: 'monospace' }}>...</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total Forks</div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <div>
+        <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-1)', fontFamily: 'monospace' }}>{stats.repos}</div>
+        <div style={{ fontSize: '0.85rem', color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Repositories</div>
+      </div>
+      <div>
+        <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-1)', fontFamily: 'monospace' }}>{stats.stars}</div>
+        <div style={{ fontSize: '0.85rem', color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total Stars</div>
+      </div>
+      <div>
+        <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-1)', fontFamily: 'monospace' }}>{stats.forks}</div>
+        <div style={{ fontSize: '0.85rem', color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total Forks</div>
+      </div>
+    </div>
+  );
+});

@@ -1,0 +1,300 @@
+[
+  {
+    "id": "TC001",
+    "title": "Submit a complete contact message successfully",
+    "description": "A visitor can fill out the contact form with valid details and see the message delivered success confirmation.",
+    "category": "Submit Contact Form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Contact section"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact form is no longer shown as active"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Show validation feedback when required contact fields are missing",
+    "description": "A visitor cannot submit the contact form with required fields left blank and sees validation feedback instead.",
+    "category": "Submit Contact Form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Contact section"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form without filling required fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation feedback is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the success confirmation is not visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Open a project repository from a project card",
+    "description": "A visitor can inspect a project card and open its code repository from the Projects section.",
+    "category": "View Projects",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Projects section"
+      },
+      {
+        "type": "action",
+        "description": "Hover over a project card"
+      },
+      {
+        "type": "action",
+        "description": "Click the code link on the project card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project repository opens in a new tab"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Open a project demo from a project card",
+    "description": "A visitor can inspect a project card and open its live demo from the Projects section.",
+    "category": "View Projects",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Projects section"
+      },
+      {
+        "type": "action",
+        "description": "Hover over a project card"
+      },
+      {
+        "type": "action",
+        "description": "Click the live demo link on the project card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project demo opens in a new tab"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Open a certification credential from a certification card",
+    "description": "A visitor can inspect a certification card and open its available credential link from the Certifications section.",
+    "category": "View Certifications",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Certifications section"
+      },
+      {
+        "type": "action",
+        "description": "Hover over a certification card"
+      },
+      {
+        "type": "action",
+        "description": "Click the credential link on the certification card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the credential page opens in a new tab"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Browse the portfolio sections from top to contact",
+    "description": "A visitor can scroll through the homepage and discover the Projects, Certifications, and Contact sections in one continuous journey.",
+    "category": "View Projects",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Projects section"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Certifications section"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Contact section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the Projects, Certifications, and Contact sections are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC007",
+    "title": "Use the project card hover interaction",
+    "description": "A visitor can hover a project card and see the card respond with its interactive visual state.",
+    "category": "View Projects",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Projects section"
+      },
+      {
+        "type": "action",
+        "description": "Hover over a project card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project card shows an interactive hover state"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC008",
+    "title": "Use the certification card hover interaction",
+    "description": "A visitor can hover a certification card and see the card respond with its interactive visual state.",
+    "category": "View Certifications",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Certifications section"
+      },
+      {
+        "type": "action",
+        "description": "Hover over a certification card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the certification card shows an interactive hover state"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC009",
+    "title": "Reject an invalid email in the contact form",
+    "description": "A visitor is prevented from submitting the contact form with an invalid email format and sees email validation feedback.",
+    "category": "Submit Contact Form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Contact section"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with an invalid email value"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an email validation error is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC010",
+    "title": "Browse content when a certification has no credential link",
+    "description": "A visitor can inspect certifications and still browse the section even when a card does not offer a credential link.",
+    "category": "View Certifications",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the Certifications section"
+      },
+      {
+        "type": "action",
+        "description": "Inspect a certification card without a credential link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the certification card is displayed without a credential link"
+      }
+    ],
+    "priority": "Low"
+  }
+]

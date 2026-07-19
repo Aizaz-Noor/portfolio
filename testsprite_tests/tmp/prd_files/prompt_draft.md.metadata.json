@@ -1,0 +1,6 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_TASK",
+  "summary":  "Draft of the prompt to be sent to the teamwork_preview subagent, detailing the exact design and performance fixes requested by the user.",
+  "updatedAt":  "2026-07-16T11:40:54.431576Z",
+  "requestFeedback":  true
+}
