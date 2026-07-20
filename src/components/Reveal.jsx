@@ -28,10 +28,8 @@ export default function Reveal({ children, delay = 0, className = '', style = {}
         transform: isVisible
           ? 'translateY(0) scale(1)'
           : 'translateY(28px) scale(0.97)',
-        filter: isVisible ? 'blur(0px)' : 'blur(6px)',
         transition: `opacity 0.7s ${delay}s cubic-bezier(0.16,1,0.3,1),
-                     transform 0.7s ${delay}s cubic-bezier(0.16,1,0.3,1),
-                     filter 0.6s ${delay}s ease`,
+                     transform 0.7s ${delay}s cubic-bezier(0.16,1,0.3,1)`,
         height: '100%',
         ...style
       }}
