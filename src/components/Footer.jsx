@@ -84,7 +84,6 @@ export default function Footer() {
             onClick={copyEmail}
             aria-label="Copy email"
             title={copied ? 'Copied!' : 'Copy email'}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           >
             {copied ? (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

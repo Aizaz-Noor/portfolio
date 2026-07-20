@@ -2306,6 +2306,7 @@ a.text-link:hover {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  cursor: pointer;
   transition: all 0.25s var(--spring);
 }
 .footer-social-link:hover {
