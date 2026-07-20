@@ -10,7 +10,6 @@ const ROLES = [
 ];
 
 export default function Hero() {
-  const [copied, setCopied] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -45,12 +44,7 @@ export default function Hero() {
     return () => clearTimeout(timeout);
   }, [displayed, isDeleting, roleIndex]);
 
-  const handleEmail = (e) => {
-    e.preventDefault();
-    navigator.clipboard.writeText('aizaznoorkhuwaja@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+
 
   return (
     <section className="section-container" id="home" style={{ position: 'relative' }}>
@@ -150,8 +144,19 @@ export default function Hero() {
             transition: 'opacity 0.7s 0.6s ease, transform 0.7s 0.6s cubic-bezier(0.16,1,0.3,1)',
           }}
         >
-          <MagneticButton href="mailto:aizaznoorkhuwaja@gmail.com" onClick={handleEmail} className="btn btn-primary">
-            {copied ? '✓ Copied!' : 'Copy Email'}
+          <MagneticButton 
+            href="#work" 
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('work');
+              if (el) {
+                const top = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top, behavior: 'smooth' });
+              }
+            }}
+            className="btn btn-primary"
+          >
+            Work! smartly
           </MagneticButton>
           <MagneticButton
             href="#"
