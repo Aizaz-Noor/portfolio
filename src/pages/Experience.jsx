@@ -4,15 +4,16 @@ import Reveal from '../components/Reveal';
 const EXPERIENCES = [
   {
     num: '01',
-    company: 'Fiverr (Freelance)',
-    role: 'MernStack, AI & SaaS Integration Consultant',
-    period: 'OCT 2025 – PRESENT',
-    type: 'Remote · Freelance',
+    company: 'Self-Employed / Fiverr',
+    role: 'Freelance Developer',
+    period: 'DEC 2025 – PRESENT',
+    type: 'Remote',
     desc: [
-      'Integrating LLM-powered features and agent pipelines into SaaS products for clients across multiple markets.',
-      'Delivering CLI tools and backend automation scripts with a focus on reliability and test coverage.',
+      'Building responsive full-stack web applications using the MERN stack.',
+      'Developing RESTful APIs and integrating modern web technologies into client and personal projects.',
+      'Continuously expanding my skills in AI integration, backend development, and software engineering best practices.',
     ],
-    tags: ['MERN', 'AI Agents', 'Node.js', 'Python'],
+    tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript'],
     current: true,
   },
   {
