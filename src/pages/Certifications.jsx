@@ -8,7 +8,7 @@ const CERTS = [
     issuer: 'Google / Pakistan Freelancers Assoc.',
     date: '2024',
     img: '/pfala.jpg',
-    link: 'https://credentials.example.com',
+    link: '/pfala.pdf',
     desc: 'Completed comprehensive training in professional communication, problem-solving, and career readiness.',
     badge: 'Soft Skills',
   },
@@ -28,7 +28,7 @@ const CERTS = [
     issuer: 'MLSA FAST Peshawar',
     date: '2024',
     img: '/web_nuxes.jpg',
-    link: '#',
+    link: '/web_nuxes.pdf',
     desc: 'Comprehensive training in modern frontend technologies including HTML, CSS, JavaScript, and React.',
     badge: 'Frontend',
   },
@@ -38,7 +38,7 @@ const CERTS = [
     issuer: 'ACM / COMSATS University',
     date: '2024',
     img: '/404_squad.jpg',
-    link: '#',
+    link: '/404_squad.pdf',
     desc: 'Participated in a university hackathon, building a functional project under a 24-hour time constraint.',
     badge: 'Hackathon',
   },
@@ -48,10 +48,10 @@ const CERTS = [
     issuer: 'COMSATS Extra-Curriculars',
     date: '2024',
     img: '/event_emperors.jpg',
-    link: '#',
+    link: '/event_emperors.pdf',
     desc: 'Coordinated logistics and technical infrastructure for large-scale campus events.',
     badge: 'Leadership',
-  },
+  }
 ];
 
 export default function Certifications() {
