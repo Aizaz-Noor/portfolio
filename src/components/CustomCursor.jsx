@@ -19,8 +19,8 @@ export default function CustomCursor() {
     const onMouseMove = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      // Dot snaps instantly
-      dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      // Use translate3d for hardware acceleration and calc for perfect centering
+      dot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
     };
 
     const lerp = (a, b, n) => a + (b - a) * n;
@@ -28,38 +28,38 @@ export default function CustomCursor() {
     const animate = () => {
       outlineX = lerp(outlineX, mouseX, 0.12);
       outlineY = lerp(outlineY, mouseY, 0.12);
-      outline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+      outline.style.transform = `translate3d(calc(${outlineX}px - 50%), calc(${outlineY}px - 50%), 0)`;
       raf = requestAnimationFrame(animate);
     };
 
-    const onMouseEnterLink = () => {
-      dot.classList.add('cursor-hover');
-      outline.classList.add('cursor-hover');
+    // Use event delegation to prevent adding hundreds of event listeners and dropping frames on scroll
+    const interactiveSelector = 'a, button, [role="button"], .tech-card-container, .cert-item, .project-card';
+    
+    const onMouseOver = (e) => {
+      if (e.target.closest(interactiveSelector)) {
+        dot.classList.add('cursor-hover');
+        outline.classList.add('cursor-hover');
+      }
     };
-    const onMouseLeaveLink = () => {
-      dot.classList.remove('cursor-hover');
-      outline.classList.remove('cursor-hover');
-    };
-
-    const attachHoverListeners = () => {
-      document.querySelectorAll('a, button, [role="button"], .tech-card-container, .cert-item, .project-card').forEach((el) => {
-        el.addEventListener('mouseenter', onMouseEnterLink);
-        el.addEventListener('mouseleave', onMouseLeaveLink);
-      });
+    
+    const onMouseOut = (e) => {
+      if (e.target.closest(interactiveSelector)) {
+        dot.classList.remove('cursor-hover');
+        outline.classList.remove('cursor-hover');
+      }
     };
 
     document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseover', onMouseOver);
+    document.addEventListener('mouseout', onMouseOut);
+    
     raf = requestAnimationFrame(animate);
-    attachHoverListeners();
-
-    // Re-attach after DOM mutations (lazy-loaded sections)
-    const mutObs = new MutationObserver(attachHoverListeners);
-    mutObs.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseover', onMouseOver);
+      document.removeEventListener('mouseout', onMouseOut);
       cancelAnimationFrame(raf);
-      mutObs.disconnect();
     };
   }, []);
 
