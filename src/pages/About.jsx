@@ -29,16 +29,16 @@ export default function About() {
 
   const traits = [
     {
-      label: 'CLI-First',
-      desc: 'I reach for the terminal before the browser. Tools should be fast and scriptable.',
+      label: 'Continuous Learning',
+      desc: 'Always exploring new technologies and improving my programming skills through hands-on projects.',
     },
     {
-      label: 'Human-Gated AI',
-      desc: 'AI agents I build never run fully unsupervised. Every phase waits for explicit approval.',
+      label: 'Problem Solving',
+      desc: 'I enjoy breaking complex problems into simple, efficient software solutions.',
     },
     {
-      label: 'Test-Driven Shipping',
-      desc: "If it's not tested across platforms in CI, it's not done.",
+      label: 'Project-Based Learning',
+      desc: 'I believe practical experience is the fastest way to become a better software engineer.',
     },
   ];
 
