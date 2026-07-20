@@ -126,8 +126,7 @@ export default function Hero() {
               transition: 'opacity 0.7s 0.45s ease, transform 0.7s 0.45s cubic-bezier(0.16,1,0.3,1)',
             }}
           >
-            Engineering intelligence into SaaS &amp; infrastructure. Building scalable
-            applications and production-ready AI pipelines from Lahore, Pakistan.
+            Software Engineering undergraduate building Mern-stack web-applications while exploring DevOps, cloud technologies, and AI automation.
           </p>
         </div>
 
