@@ -30,7 +30,6 @@ const fragmentShader = `
 
   void main() {
     float dist = length(gl_PointCoord - vec2(0.5));
-    if (dist > 0.5) discard;
     float alpha = 1.0 - smoothstep(0.2, 0.5, dist);
 
     // Mix between white and the --accent color (#818cf8 -> RGB: 129, 140, 248)

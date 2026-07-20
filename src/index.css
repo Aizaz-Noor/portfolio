@@ -17,14 +17,14 @@
   --glow:      rgba(129, 140, 248, 0.3);
   --glow-2:    rgba(56, 189, 248, 0.25);
 
-  --mat-thick-bg: rgba(28, 28, 30, 0.85);
-  --mat-thick-blur: blur(48px) saturate(180%);
-  --mat-regular-bg: rgba(28, 28, 30, 0.75);
-  --mat-regular-blur: blur(32px) saturate(180%);
-  --mat-thin-bg: rgba(28, 28, 30, 0.6);
-  --mat-thin-blur: blur(24px) saturate(180%);
-  --mat-ultrathin-bg: rgba(28, 28, 30, 0.4);
-  --mat-ultrathin-blur: blur(64px) saturate(180%);
+  --mat-thick-bg: rgba(20, 20, 22, 0.7);
+  --mat-thick-blur: blur(16px) saturate(180%);
+  --mat-regular-bg: rgba(20, 20, 22, 0.6);
+  --mat-regular-blur: blur(12px) saturate(180%);
+  --mat-thin-bg: rgba(20, 20, 22, 0.5);
+  --mat-thin-blur: blur(8px) saturate(180%);
+  --mat-ultrathin-bg: rgba(20, 20, 22, 0.4);
+  --mat-ultrathin-blur: blur(4px) saturate(180%);
 }
 
 /* ── Reset ─────────────────────────────────────────────────────── */
@@ -229,8 +229,8 @@ body::after {
     border-radius: 9999px;
     top: 16px;
     background: rgba(20, 20, 22, 0.95);
-    backdrop-filter: blur(48px) saturate(200%);
-    -webkit-backdrop-filter: blur(48px) saturate(200%);
+    backdrop-filter: blur(12px) saturate(200%);
+    -webkit-backdrop-filter: blur(12px) saturate(200%);
     border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .navbar.scrolled {
@@ -715,8 +715,8 @@ input, textarea, .btn, .btn *, .floating-input-group *, .navbar * {
   width: 100%;
   padding: 12px 16px;
   background: rgba(10, 10, 12, 0.95);
-  backdrop-filter: blur(48px) saturate(200%);
-  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  backdrop-filter: blur(12px) saturate(200%);
+  -webkit-backdrop-filter: blur(12px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 24px;
   box-shadow: 
@@ -2167,8 +2167,8 @@ a.text-link:hover {
   max-width: 860px;
   height: min(90vh, 720px);
   background: rgba(10,10,14,0.97);
-  backdrop-filter: blur(48px) saturate(200%);
-  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  backdrop-filter: blur(12px) saturate(200%);
+  -webkit-backdrop-filter: blur(12px) saturate(200%);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 28px;
   box-shadow: 0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08);
