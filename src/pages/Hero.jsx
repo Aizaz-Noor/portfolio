@@ -156,7 +156,7 @@ export default function Hero() {
             }}
             className="btn btn-primary"
           >
-            Work! smartly
+            Work
           </MagneticButton>
           <MagneticButton
             href="#"
