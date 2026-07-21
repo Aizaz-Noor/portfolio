@@ -40,11 +40,9 @@ const TechCard = React.memo(function TechCard({ item }) {
   return (
     <div
       ref={cardRef}
-      className={`tech-card-container ${active ? 'active' : ''}`}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
+      className={`tech-card-container animated-border ${active ? 'active' : ''}`}
       onMouseMove={handleMouseMove}
-      onTouchStart={(e) => { e.stopPropagation(); setActive(!active); }}
+      onClick={(e) => { e.stopPropagation(); setActive(!active); }}
       style={{ '--card-glow': item.glow }}
       aria-label={`${item.name} — ${item.desc}`}
     >

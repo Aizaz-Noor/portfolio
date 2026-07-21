@@ -68,7 +68,7 @@ export default function About() {
             margin: '0 auto',
           }}>
             <TiltCard>
-              <div className="about-photo-wrapper">
+              <div className="about-photo-wrapper animated-border">
                 <img
                   src="/about-photo-color-portrait.jpeg"
                   alt="Aizaz Noor"

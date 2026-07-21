@@ -173,7 +173,7 @@ export default function Hero() {
 
         {/* Stats strip */}
         <div
-          className="hero-stats-strip"
+          className="hero-stats-strip animated-border"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
