@@ -598,9 +598,9 @@ input, textarea, .btn, .btn *, .floating-input-group *, .navbar * {
   border: 1px solid rgba(255,255,255,0.06);
   background: rgba(255,255,255,0.02);
   backdrop-filter: blur(12px);
-  max-width: 680px;
+  max-width: 800px;
   margin: 0 auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .hero-stat {
   display: flex;
@@ -631,9 +631,16 @@ input, textarea, .btn, .btn *, .floating-input-group *, .navbar * {
   height: 36px;
   background: rgba(255,255,255,0.08);
 }
-@media (max-width: 480px) {
-  .hero-stats-strip { gap: 1.5rem; padding: 1.25rem 1.5rem; }
-  .hero-stat-divider { display: none; }
+@media (max-width: 768px) {
+  .hero-stats-strip {
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    padding: 1.25rem 1.5rem;
+    max-width: 500px;
+  }
+  .hero-stat-divider {
+    display: none;
+  }
 }
 
 /* ── Timeline ───────────────────────────────────────────────────── */
