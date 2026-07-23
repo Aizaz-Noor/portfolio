@@ -17,7 +17,7 @@ const CERTS = [
     title: 'Microsoft Learn Student Ambassador',
     issuer: 'Microsoft',
     date: '2025',
-    img: null,
+    img: '/mlsa_cui.jpg',
     link: '/Mlsa Cui lahore.pdf',
     desc: 'Recognized as a Microsoft Learn Student Ambassador, contributing to community learning through technical workshops, events, and knowledge sharing.',
     badge: 'Microsoft',
