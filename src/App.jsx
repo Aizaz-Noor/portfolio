@@ -19,6 +19,9 @@ const Background3D   = lazy(() => import('./components/Background3D'));
 
 export default function App() {
   useEffect(() => {
+    // Signal native preloader (in index.html) to fade out
+    document.dispatchEvent(new CustomEvent('app-ready'));
+
     document.body.style.overflow = 'auto';
     document.body.style.overflowX = 'hidden';
     document.documentElement.style.overflow = 'auto';
@@ -58,13 +61,25 @@ export default function App() {
       <div style={{ position: 'relative', zIndex: 10, width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <Hero />
         <ErrorBoundary>
-          <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><div className="loading-spinner" /></div>}>
+          <Suspense fallback={null}>
             <About />
+          </Suspense>
+          <Suspense fallback={null}>
             <Experience />
+          </Suspense>
+          <Suspense fallback={null}>
             <TechStack />
+          </Suspense>
+          <Suspense fallback={null}>
             <Projects />
+          </Suspense>
+          <Suspense fallback={null}>
             <Certifications />
+          </Suspense>
+          <Suspense fallback={null}>
             <Profiles />
+          </Suspense>
+          <Suspense fallback={null}>
             <Contact />
           </Suspense>
         </ErrorBoundary>

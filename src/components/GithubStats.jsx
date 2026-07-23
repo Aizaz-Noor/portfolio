@@ -8,15 +8,18 @@ export default React.memo(function GithubStats() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const userRes = await fetch('https://api.github.com/users/Aizaz-Noor');
-        if (!userRes.ok) throw new Error('Failed to fetch user');
-        const userData = await userRes.json();
+        const [userRes, reposRes] = await Promise.all([
+          fetch('https://api.github.com/users/Aizaz-Noor'),
+          fetch('https://api.github.com/users/Aizaz-Noor/repos?per_page=100')
+        ]);
 
-        // Fetch repos to calculate stars and forks
-        // Using per_page=100 to get as many as possible in one request
-        const reposRes = await fetch('https://api.github.com/users/Aizaz-Noor/repos?per_page=100');
+        if (!userRes.ok) throw new Error('Failed to fetch user');
         if (!reposRes.ok) throw new Error('Failed to fetch repos');
-        const reposData = await reposRes.json();
+
+        const [userData, reposData] = await Promise.all([
+          userRes.json(),
+          reposRes.json()
+        ]);
 
         let totalStars = 0;
         let totalForks = 0;

@@ -333,6 +333,8 @@ body::after {
   opacity: 0.4;
   animation: rotateBorder 4s linear infinite;
   transition: opacity 0.3s;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .glass-panel:hover::after,
