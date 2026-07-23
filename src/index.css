@@ -999,6 +999,18 @@ a.text-link:hover {
   letter-spacing: 0.01em;
 }
 
+@media (max-width: 768px) {
+  .tech-card-back {
+    padding: 1rem;
+    justify-content: center;
+  }
+  .tech-card-desc {
+    font-size: 0.72rem;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+}
+
 /* ── Press States ────────────────────────────────────────────────── */
 .btn:active, 
 .navbar-links a:active, 
