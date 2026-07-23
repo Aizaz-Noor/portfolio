@@ -41,10 +41,9 @@ const fragmentShader = `
   }
 `;
 
-export default function ParticleTunnel() {
+export default function ParticleTunnel({ count = 1500 }) {
   const meshRef  = useRef();
   const matRef   = useRef();
-  const count    = 1500;
   const depth    = 280;
 
   const { positions, sizes, depths } = useMemo(() => {
@@ -65,7 +64,7 @@ export default function ParticleTunnel() {
       depths[i] = (z + depth / 2) / depth; // normalise 0→1
     }
     return { positions, sizes, depths };
-  }, []);
+  }, [count]);
 
   useFrame((state, delta) => {
     if (meshRef.current)  meshRef.current.rotation.z += delta * 0.04;

@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import ParticleTunnel from './ParticleTunnel';
@@ -31,18 +31,20 @@ function CameraRig() {
 }
 
 export default function Background3D() {
+  const isMobile = useMemo(() => typeof window !== 'undefined' && window.innerWidth < 768, []);
+
   return (
     <div style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', zIndex: -1, pointerEvents: 'none' }}>
       <Canvas
-        dpr={[1, 1.5]}
+        dpr={[1, isMobile ? 1 : 1.5]}
         camera={{ position: [0, 0, 150], fov: 70, near: 0.1, far: 1000 }}
         gl={{ antialias: false, alpha: false, powerPreference: 'high-performance' }}
       >
         <color attach="background" args={['#050507']} />
         <ambientLight intensity={0.15} color="#ffffff" />
         <Suspense fallback={null}>
-          <Stars radius={200} depth={60} count={2500} factor={3} saturation={0} fade speed={0.3} />
-          <ParticleTunnel />
+          <Stars radius={200} depth={60} count={isMobile ? 1000 : 2500} factor={3} saturation={0} fade speed={0.3} />
+          <ParticleTunnel count={isMobile ? 600 : 1500} />
           <CameraRig />
         </Suspense>
       </Canvas>

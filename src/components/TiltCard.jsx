@@ -3,15 +3,15 @@ import React, { useRef } from 'react';
 export default function TiltCard({ children, className = '', style = {} }) {
   const cardRef = useRef(null);
   const innerRef = useRef(null);
-  let ticking = false;
+  const ticking = useRef(false);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current || !innerRef.current) return;
     
-    if (!ticking) {
+    if (!ticking.current) {
       window.requestAnimationFrame(() => {
         if (!cardRef.current || !innerRef.current) {
-          ticking = false;
+          ticking.current = false;
           return;
         }
         const rect = cardRef.current.getBoundingClientRect();
@@ -29,9 +29,9 @@ export default function TiltCard({ children, className = '', style = {} }) {
         innerRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         innerRef.current.style.transition = 'transform 0.1s ease-out';
         
-        ticking = false;
+        ticking.current = false;
       });
-      ticking = true;
+      ticking.current = true;
     }
   };
 
