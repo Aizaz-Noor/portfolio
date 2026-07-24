@@ -1,19 +1,27 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
+/**
+ * MagneticButton — cursor-tracking pull effect.
+ * Uses ref + direct DOM style writes (no useState) to avoid React re-renders on every mousemove.
+ */
 export default function MagneticButton({ children, className, href, onClick, ...props }) {
   const ref = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const { width, height, left, top } = ref.current.getBoundingClientRect();
-    const x = (clientX - (left + width / 2)) * 0.25; // 25% pull
-    const y = (clientY - (top + height / 2)) * 0.25;
-    setPosition({ x, y });
+    const el = ref.current;
+    if (!el) return;
+    const { width, height, left, top } = el.getBoundingClientRect();
+    const x = (e.clientX - (left + width / 2)) * 0.25;
+    const y = (e.clientY - (top + height / 2)) * 0.25;
+    el.style.transform = `translate(${x}px, ${y}px)`;
+    el.style.transition = 'none';
   };
 
   const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = 'translate(0px, 0px)';
+    el.style.transition = 'transform 0.4s cubic-bezier(0.1, 0.7, 0.1, 1)';
   };
 
   const Tag = href ? 'a' : 'button';
@@ -27,11 +35,7 @@ export default function MagneticButton({ children, className, href, onClick, ...
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        transition: position.x === 0 && position.y === 0 ? 'transform 0.4s cubic-bezier(0.1, 0.7, 0.1, 1)' : 'none',
-        display: 'inline-flex'
-      }}
+      style={{ display: 'inline-flex', transform: 'translate(0px,0px)' }}
       {...props}
     >
       {children}

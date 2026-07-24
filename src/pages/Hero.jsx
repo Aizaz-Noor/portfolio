@@ -10,12 +10,15 @@ const ROLES = [
 ];
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
   const [visible, setVisible] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
-  const pauseRef = useRef(false);
+
+  // Typewriter: useRef + direct DOM write — zero React re-renders during typing
+  const typeRef = useRef(null);
+  const roleIndexRef = useRef(0);
+  const isDeletingRef = useRef(false);
+  const displayedRef = useRef('');
+  const timeoutRef = useRef(null);
 
   // Staggered entrance
   useEffect(() => {
@@ -23,27 +26,41 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, []);
 
-  // Typewriter effect
+  // Typewriter loop — writes directly to DOM, no state updates
   useEffect(() => {
-    const current = ROLES[roleIndex];
-    let timeout;
+    const tick = () => {
+      const current = ROLES[roleIndexRef.current];
+      const isDeleting = isDeletingRef.current;
+      const displayed = displayedRef.current;
 
-    if (pauseRef.current) return;
+      if (!isDeleting && displayed.length < current.length) {
+        displayedRef.current = current.slice(0, displayed.length + 1);
+        timeoutRef.current = setTimeout(tick, 80);
+      } else if (!isDeleting && displayed.length === current.length) {
+        timeoutRef.current = setTimeout(() => {
+          isDeletingRef.current = true;
+          tick();
+        }, 2000);
+        return;
+      } else if (isDeleting && displayed.length > 0) {
+        displayedRef.current = current.slice(0, displayed.length - 1);
+        timeoutRef.current = setTimeout(tick, 45);
+      } else if (isDeleting && displayed.length === 0) {
+        isDeletingRef.current = false;
+        roleIndexRef.current = (roleIndexRef.current + 1) % ROLES.length;
+        timeoutRef.current = setTimeout(tick, 100);
+        return;
+      }
 
-    if (!isDeleting && displayed.length < current.length) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80);
-    } else if (!isDeleting && displayed.length === current.length) {
-      timeout = setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length - 1)), 45);
-    } else if (isDeleting && displayed.length === 0) {
-      setIsDeleting(false);
-      setRoleIndex((i) => (i + 1) % ROLES.length);
-    }
+      // Write directly to the DOM — no React re-render
+      if (typeRef.current) {
+        typeRef.current.textContent = displayedRef.current;
+      }
+    };
 
-    return () => clearTimeout(timeout);
-  }, [displayed, isDeleting, roleIndex]);
-
+    timeoutRef.current = setTimeout(tick, 400);
+    return () => clearTimeout(timeoutRef.current);
+  }, []);
 
 
   return (
@@ -111,7 +128,7 @@ export default function Hero() {
               transition: 'opacity 0.7s 0.3s ease, transform 0.7s 0.3s cubic-bezier(0.16,1,0.3,1)',
             }}
           >
-            {displayed}
+            <span ref={typeRef} />
             <span className="cursor" />
           </p>
 

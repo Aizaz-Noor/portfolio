@@ -27,10 +27,18 @@ const tools = [
 const TechCard = React.memo(function TechCard({ item }) {
   const [active, setActive] = useState(false);
   const cardRef = React.useRef(null);
+  const rectCacheRef = React.useRef(null);
+
+  // Cache rect on mouseenter (once per hover), not on every mousemove
+  const handleMouseEnter = useCallback(() => {
+    if (cardRef.current) {
+      rectCacheRef.current = cardRef.current.getBoundingClientRect();
+    }
+  }, []);
 
   const handleMouseMove = useCallback((e) => {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
+    const rect = rectCacheRef.current;
+    if (!rect || !cardRef.current) return;
     cardRef.current.style.setProperty('--mx', `${e.clientX - rect.left}px`);
     cardRef.current.style.setProperty('--my', `${e.clientY - rect.top}px`);
   }, []);
@@ -41,6 +49,7 @@ const TechCard = React.memo(function TechCard({ item }) {
     <div
       ref={cardRef}
       className={`tech-card-container animated-border ${active ? 'active' : ''}`}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onClick={(e) => { e.stopPropagation(); setActive(!active); }}
       style={{ '--card-glow': item.glow }}

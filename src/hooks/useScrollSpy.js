@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 /**
  * Custom hook to track which section is currently active in the viewport.
+ * Uses MutationObserver to detect lazy-mounted sections instead of setInterval polling.
  * @param {string[]} sectionIds - Array of HTML IDs to observe.
  * @param {Object} options - IntersectionObserver options.
  * @returns {string} The ID of the currently active section.
@@ -36,21 +37,25 @@ export function useScrollSpy(sectionIds, options = defaultOptions) {
     };
 
     // Try immediately
-    if (!tryObserve()) {
-      // If some elements are lazy-loaded, retry periodically
-      const interval = setInterval(() => {
-        if (tryObserve()) {
-          clearInterval(interval);
-        }
-      }, 500);
-
-      return () => {
-        clearInterval(interval);
-        observer.disconnect();
-      };
+    if (tryObserve()) {
+      return () => observer.disconnect();
     }
 
-    return () => observer.disconnect();
+    // Use MutationObserver instead of setInterval to detect when lazy sections mount
+    const mutationObserver = new MutationObserver(() => {
+      if (tryObserve()) {
+        mutationObserver.disconnect();
+      }
+    });
+    mutationObserver.observe(document.getElementById('root') || document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, [sectionIds, options]);
 
   return activeId;
