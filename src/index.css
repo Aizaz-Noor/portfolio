@@ -1892,30 +1892,44 @@ a.text-link:hover {
   z-index: 99999;
   border-radius: 50%;
   will-change: transform;
-  transform: translate(-50%, -50%);
+  /* Start at top-left; JS moves via translate3d */
+  transform: translate3d(-50%, -50%, 0);
+  /* Smooth opacity transitions only */
+  transition: opacity 0.3s ease;
 }
 
 .cursor-dot {
-  width: 8px; height: 8px;
+  width: 7px; height: 7px;
   background: var(--accent);
-  transition: width 0.2s var(--spring), height 0.2s var(--spring), background 0.2s ease;
+  /* Crisp glow matching accent color */
+  box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.25), 0 0 8px rgba(129, 140, 248, 0.6);
+  /* Dot size change is CSS — fast spring feel */
+  transition: width 0.15s var(--spring), height 0.15s var(--spring),
+              background 0.15s ease, box-shadow 0.15s ease, opacity 0.3s ease;
 }
 
 .cursor-outline {
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(129, 140, 248, 0.45);
-  transition: width 0.25s var(--spring), height 0.25s var(--spring), border-color 0.25s ease, background 0.25s ease;
+  width: 38px; height: 38px;
+  border: 1.5px solid rgba(129, 140, 248, 0.5);
+  background: rgba(129, 140, 248, 0.04);
+  /* NO CSS transition on transform — JS spring physics handles ALL movement */
+  /* Only size + color changes get CSS transitions */
+  transition: width 0.2s var(--spring), height 0.2s var(--spring),
+              border-color 0.2s ease, background 0.2s ease, opacity 0.3s ease;
 }
 
 .cursor-dot.cursor-hover {
-  width: 12px; height: 12px;
-  background: var(--accent-2);
+  width: 10px; height: 10px;
+  background: #38bdf8;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.3), 0 0 12px rgba(56, 189, 248, 0.7);
 }
 
 .cursor-outline.cursor-hover {
-  width: 52px; height: 52px;
-  border-color: var(--accent);
-  background: rgba(129, 140, 248, 0.05);
+  width: 56px; height: 56px;
+  border-color: rgba(129, 140, 248, 0.8);
+  background: rgba(129, 140, 248, 0.08);
+  /* Subtle breathing glow on the ring when hovering interactive elements */
+  box-shadow: 0 0 0 0 rgba(129, 140, 248, 0), inset 0 0 16px rgba(129, 140, 248, 0.06);
 }
 
 /* ═══════════════════════════════════════════════════════════════
